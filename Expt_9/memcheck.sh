@@ -12,7 +12,7 @@ do
     #echo $size
     kill_mem=0
     kill_cpu=0
-    if [ "$user" = "golden-+" ]
+    if [ "$user" = "amrith" ]
     then
       kill_mem=$( echo "$size>$check_mem_val" | bc )
       kill_cpu=$( echo "$cpu>$check_cpu_val" | bc )

@@ -1,8 +1,0 @@
-sum=`expr $a + $b`
-	sum=`expr $sum * $sum`
-	diff=`expr $exp - $sum`
-	diff=`expr $diff % 2`
-	if [ $diff -eq 1];	
-	then
-		echo "Perimeter: $(($a + $b + $c))"
-	fi

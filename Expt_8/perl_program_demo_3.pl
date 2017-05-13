@@ -18,7 +18,7 @@ if($choice== 1){
 	}
 }
 if($choice==3){
-        print "You chose the matching operator\n";
+        print "You chose the transform operator\n";
         if($string =~ tr/\Q$regex/how/){
 
                 print "Yes, the transformed string is '$string'\n";

@@ -1,15 +1,113 @@
-Experiment 9
--------------
-Advanced linux command curl,wget,ftp,ssh,grep
+Linux Basic Commands and Directory Operations
 ----------------------------------------------
+1. touch <file name> 	# Creates a file 
+2. mkdir <folder name> 	# Creates a folder
+3. pwd 					# Gives the present Working directory
+4. ls 					# List all files in the current directory
+5. ls 					# Lists the files in the current directory
+6. ls -l 				# Prevides a long listing of all the files
+7. ls -l -h 			# Same as the above command but the file sizes will be in human 						  readable form
+8. ls -F 				# Marks all the executable with a * and all the directories with a /
+9. ls --color 			# Shows a coloured listing of all the files
+10.ls -a 				# Shows all the files in the present directory including the 							  special dot files
+11.cd <dirname> 		# Changes the directory to the subdirectory of the current 								  directory
+12.cd .. 				# Changes the directory to the parent directory of the current 							  directory
+13.cd ~ 				# Changes the directory to the home directory of the current user
+14.cd / 				# Changes the directory to the root directory of the current user
+15.cd ~<username>		# Changes the directory to the home sirectory of a different user
+16.cat <filename> 		# Displays the text scroll off the screen
+17.cat <file1> <file2> 	# Concatenates the contents of the two text files
+18.more <filename> 		# Displays the file one scornful at a time
+19.less <filename> 		# Similat but faster than the more command
+20.cp <file1> <file2> 		# Copies file 1 to file 2
+21.cp <file1> <dirname> 	# Copies file1 to Directory <dirname>
+22.cp -r <dirname1> <dirname2> 	# Copies dirname1 directory to directory dirname2
+23.mv <oldname> <newname> 	# Renames file with old name to new name
+24.mv <olddir> <newdir> 	# Renames directory with name olddir to newdir
+25.mv <filename> <dirname> 	# Moves files with name as filename to directory dirname
+26.clear 					# Clears the terminal screen
+27.locate <filename> 		# Searches for a specified filename
+28.passwd 					# Prompt to change the password of the current user
+29.whoami 					# Displays the details of the current logged in user
+30.which <package>			# Gives the location of symbolic link of current package
+31.man <commandname> 		# Finds out what a command does
+32.man -f <commandname> 	# One line summary of what the command does
+33.man -k <keyword> 		# Searches for a command with a particular keyword
+34.echo "value"				# prints input to terminal
+35.echo $Varibale			# prints the value of that variable
+
+Basic Outline of Directories in a typical Linux System
+--------------------------------------------------------
+1. /bin		# User Binaries
+2. /sbin	# System Binaries
+3. /etc		# Configuration Files
+4  /dev		# Device Files
+5. /proc	# Process info
+6. /var		# Varibale Files	
+7. /tmp		# Temporary Files
+8. /usr		# User programs
+9. /home	# Home Directories
+10./boot	# Boot Loader Files
+11./lib		# System Libs
+12./opt		# Optional Add ons
+13./mnt		# Mount directory
+14./media	# Removable devices
+15./srv		# Service Data
+
+Executing a Bash Script
+------------------------
+1. cd to the directory which contains the file to be executed
+2. Type "chmod +x <fileName>" which provides system permissions for the file to be executed
+3. Type ./filename.sh to execute the file
+
+More Basics
+-------------
+1. seq(1 10) 								#prints values from 1-10
+2. for f in $(seq 1 10);do touch $f;done 	# creates files naming from 1-10
+3. if [ 10 == 20 ];  then echo "10";  
+	else echo "Not 10"; fi 					#if-else 
+
+Regular Expressions Examples
+---------------------
+1. ls * 				#prints all the values (* - zero or more characters)
+2. ls 1*				#prints all files like 1,10,11,121 etc (starts with 1)
+3. ls [3-5]*			#prints all files that starts with 3,4,5
+4. ls {3,5}*			#prints all files that starts with 3,5
+5. ls [3-5][1-3]		#prints all files that has first character starting with nos 3								,4,5 and having second character as values 1,2,3
+
+Pipes
+------
+Pipes are used to give output of one command to input of the next one
+Examples
+1. ls | grep 1 				#lists only those files staring with 1
+2. ls | grep 1 | grep 2		#lists files having both 1 and 2 together 
+
+
+Permissions
+-------------
+-->When you print 'ls -l' in the terminal, you get a list of files and folders with the permission.
+-->It will be of the form -rw-r--r-- etc
+-->What does this mean?
+-->In linux, there are users, groups and others.Each line in 'ls -l' contains 10 characters of the abover form. These are the permissions granted by the system to the category
+-->r-read w-write x-executable d-directory 
+-->Consider this form : drwxrwxrwx
+-->d indicates that particular listing is a directory
+there are 3 rwx printed, which means r,w,x permissions are given to user,group and others
+-->To Change permissions , use the chmod command 	
+
+Eg: chmod 754 <filename> --> means that user has (r-1,w-1,x-1 : Decimal Equivalent of 111,i.e read write and executable permission),group has user has (r-1,w-0,x-1 : Decimal Equivalent of 101,i.e read and executable permissions),others has (r-1,w-0,x-0 : Decimal Equivalent of 100,i.e read permission)
+	chmod +rwx <filename > -->grants all the permissions to file
+
+curl,wget,ftp,ssh,grep,sed
+------------------------
 1. curl
 --------
-curl <url> --> Fetches content of the url and displays in stdout
-curl -o <url1> -o <url2>
-curl -L <url> -->insist redirection
+curl <url> 					#Fetches content of the url and displays in stdout
+curl -o <filename> <url1>  	#Gets response and stores it in <filename>
+curl -L <url> 				#insist redirection
 
 2.wget
-------
+------ 
 wget http://www.openss7.org/repos/tarballs/strx25-0.9.2.1.tar.bz2 -->get single file
 wget --limit-rate=200k http://www.openss7.org/repos/tarballs/strx25-0.9.2.1.tar.bz2 -->set download limit
 wget -c http://www.openss7.org/repos/tarballs/strx25-0.9.2.1.tar.bz2 -->Download resume
@@ -24,13 +122,25 @@ ftp> put filename
 ftp> ls
 ftp> close
 
-4.ssh
+4.stfp
+-------
+can be used as ftp
+it is secure ftp
+
+5.ssh
 -----
 ssh remote_username@remote_host
+Eg: ssh root@104.133.121.11
 
-5.grep
+6.grep
 -------
-grep "literal_string" filename
-grep "string" FILE_PATTERN
-grep -i "the" demo_file
-grep "lines.*empty" demo_file
+grep <pattern> <filename> -->prints all lines in the file that has the given pattern
+Eg: grep 1* numbers.txt --> prints all lines starting with 1 
+
+7.sed
+-------
+stream editor command used with regular expressions
+Eg: cat <filename> | sed 's|exp1|exp2|'
+	cat names.txt | sed 's|S4 32|S4 36|'
+	The above commands ouputs the content of names.txt replacing all 'S4 32' with 'S4 36'
+
