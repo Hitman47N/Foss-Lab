@@ -1,6 +1,7 @@
 #!/bin/bash
 ros=0
 res=0
+echo "Started..Please Wait!!"
 for p in $(seq 2 2 1000);do
 nos=0
 exp=` expr $p / 3 ` 
@@ -14,7 +15,6 @@ fin=`expr $e3 % $e5`
 if [ $fin -eq 0 ];
 then
 	nos=`expr $nos + 1`
-	echo $nos
 fi
 done;
 if [ $nos -gt $ros ];
@@ -26,4 +26,5 @@ done;
 echo "Maximum Perimeter is : $res"
 echo "Real solutions: $ros"
 echo "Number of Solutions is $nos"
+echo "Done!!"
 #The number of solutions is maximized for p=840
